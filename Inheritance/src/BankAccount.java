@@ -1,9 +1,7 @@
 public class BankAccount {
-    protected double balance = 0.0;
+    private float balance = 0.0f;
     private int accountNumber;
-    public BankAccount() {
-        this(0);
-    }
+
 
     public BankAccount(int accountNumber) {
         this.accountNumber = accountNumber;
@@ -23,6 +21,10 @@ public class BankAccount {
             return true;
         }
         return false;
+    }
+
+    protected void setBalance(double balance) {
+        this.balance = (float)balance;
     }
 
     public int getAccountNumber() {

@@ -1,10 +1,14 @@
 class BufferAccount extends BankAccount {
-    private double minumum = -200;
+
+    public BufferAccount(int accountNumber) {
+        super(accountNumber);
+    }
 
     @Override
     public boolean withdraw(double amount) {
-        if (balance - amount > minumum) {
-            balance -= amount;
+        double minimum = -200;
+        if (getBalance() - amount > minimum) {
+            setBalance(getBalance() - amount);
             return true;
         }
         return false;
