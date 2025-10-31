@@ -8,7 +8,7 @@ public class Main {
         try {
             int result = divide(10,2);
             System.out.println(result);
-
+            method1();
             Scanner scanner = new Scanner(new File("inf.txt"));
             System.out.println(scanner.nextLine());
         } catch (DivideByZeroException ex) {
@@ -18,7 +18,7 @@ public class Main {
             System.out.println(ex.getMessage());
             throw ex;
         } catch (Exception ex) {
-            System.out.println("An unexpected error occurred");
+            System.out.println("something went wrong");
         } finally {
             System.out.println("Thanks for playing!");
         }
@@ -32,6 +32,23 @@ public class Main {
             throw new DivideByZeroException(a, b);
         }
         return a / b;
+    }
+
+    public static void method1() throws Exception{
+        method2();
+    }
+
+    public static void method2() throws Exception {
+        try {
+            method3();
+        } catch (Exception ex) {
+            System.out.println(ex);
+            throw ex;
+        }
+    }
+
+    public static void method3() throws Exception {
+        throw new Exception("Failure!!!!");
     }
 }
 
@@ -52,4 +69,6 @@ class DivideByZeroException extends Exception {
     public int getB() {
         return b;
     }
+
+
 }
