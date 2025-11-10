@@ -23,6 +23,18 @@ public class Stack<T> {
         return value;
     }
 
+    public T peek() {
+        return top.value;
+    }
+
+    public void clear() {
+        top = null;
+    }
+
+    public boolean isEmpty() {
+        return top == null;
+    }
+
     public static class StackEmptyException extends Exception {}
 
 }
