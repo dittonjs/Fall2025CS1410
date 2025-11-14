@@ -1,4 +1,8 @@
-public class LinkedList<T> {
+import java.util.Iterator;
+
+public class LinkedList<T>{
+
+
     private class Node {
         T value;
         Node next;
@@ -17,16 +21,19 @@ public class LinkedList<T> {
         tail = newNode;
     }
     // insert without tail
-//    public void insert(T value) {
-//        Node current = head;
-//        while(current.next != null) {
-//            current = current.next;
-//        }
-//        Node newNode = new Node();
-//        newNode.value = value;
-//        current.next = newNode;
-//        size += 1;
-//    }
+    public void insert(T value) {
+        Node previous = head;
+        Node current = head.next;
+        while(current != null) {
+            previous = current;
+            current = current.next;
+
+        }
+        Node newNode = new Node();
+        newNode.value = value;
+        previous.next = newNode;
+        size += 1;
+    }
 
     public int getSize() {
         return size;
@@ -77,6 +84,20 @@ public class LinkedList<T> {
             System.out.println(current.value);
             current = current.next;
         }
+    }
+
+    public void forEach(ForEachHandler<T> handler) {
+        Node current = head.next;
+        while(current != null) {
+            if(!handler.callback(current.value)) {
+                break;
+            }
+            current = current.next;
+        }
+    }
+
+    public interface ForEachHandler<T> {
+        boolean callback(T t);
     }
 
 }
