@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinarySearchTree<T extends Comparable<T>> {
     private class Node {
         T value;
@@ -67,6 +70,62 @@ public class BinarySearchTree<T extends Comparable<T>> {
         display(node.left, indent + "    ");
     }
 
+    public void displayInOrder() {
+        displayInOrder(root);
+    }
+
+    private void displayInOrder(Node node) {
+        if (node == null) return;
+        displayInOrder(node.left);
+        System.out.println(node.value);
+        displayInOrder(node.right);
+    }
+
+    public void displayPreOrder() {
+        displayPreOrder(root);
+    }
+
+    private void displayPreOrder(Node node) {
+        if (node == null) return;
+        System.out.println(node.value);
+        displayPreOrder(node.left);
+        displayPreOrder(node.right);
+    }
+
+    public void displayPostOrder() {
+        displayPostOrder(root);
+    }
+
+    private void displayPostOrder(Node node) {
+        if (node == null) return;
+        displayPostOrder(node.left);
+        displayPostOrder(node.right);
+        System.out.println(node.value);
+    }
+
+    public BinarySearchTree<T> copy() {
+        BinarySearchTree<T> newTree = new BinarySearchTree<>();
+        copy(root, newTree);
+        return newTree;
+    }
+
+    private void copy(Node node, BinarySearchTree<T> newTree) {
+        if (node == null) return;
+        newTree.insert(node.value);
+        copy(node.left, newTree);
+        copy(node.right, newTree);
+    }
+
+    public void displayBreadthFirst() {
+        Queue<Node> nodes = new LinkedList<>();
+        nodes.add(root);
+        while(!nodes.isEmpty()) {
+            Node node = nodes.remove();
+            System.out.println(node.value);
+            if (node.left != null) nodes.add(node.left);
+            if (node.right != null) nodes.add(node.right);
+        }
+    }
 
 
 }

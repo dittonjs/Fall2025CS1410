@@ -8,5 +8,13 @@ public class Main {
         System.out.println(bst.find(100));
         bst.display();
 
+        BinarySearchTree<Integer> copy = bst.copy();
+        System.out.println("====================");
+        copy.display();
+//        System.out.println("====================");
+//        bst.displayPostOrder();
+        System.out.println("====================");
+        bst.displayBreadthFirst();
+
     }
 }
