@@ -127,5 +127,47 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
+    public boolean remove(T value) {
+        Node parent = null;
+        Node current = root;
+        boolean done = false;
+        while(!done && current != null) {
+            if (value.compareTo(current.value) < 0) {
+                parent = current;
+                current = current.left;
+            } else if(value.compareTo(current.value) > 0) {
+                parent = current;
+                current = current.right;
+            } else{
+                done = true;
+            }
+        }
+
+        if (current == null) return false;
+
+        if (current.left == null) {
+            if (parent == null) {
+                root = current.right;
+            } else {
+                parent.right = current.right;
+            }
+        } else {
+            Node rightMost = current.left;
+            Node parentOfRightMost = current;
+            while(rightMost.right != null) {
+                parentOfRightMost = rightMost;
+                rightMost = rightMost.right;
+            }
+            current.value = rightMost.value;
+            if(parentOfRightMost == current) {
+                parentOfRightMost.left = rightMost.left;
+            } else {
+                parentOfRightMost.right = rightMost.left;
+            }
+
+        }
+        return true;
+    }
+
 
 }
